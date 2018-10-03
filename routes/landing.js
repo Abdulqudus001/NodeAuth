@@ -14,7 +14,7 @@ router.get('/',(req,res) => {
 });
 
 router.get('/register', (req,res) => {
-  res.render('register',{message: req.flash('mismatch')});
+  res.render('register',{message: req.flash('mismatch'),error:req.flash('error')});
 });
 
 router.get('/home', sessionChecker,(req,res) => {
@@ -63,15 +63,20 @@ router.get('/logout',(req,res) => {
 router.post('/login',(req,res) => {
   User.findOne({username:req.body.username},(err,user) => {
     if(err){
-      console.log('User not found')
+      console.error(err);
     } else {
-      bcrypt.compare(req.body.password,user.password,(err,response) => {
-        if(response){
-          req.session.user = req.body.username;
-          req.flash('welcome','Welcome to my node revision class')
-          res.redirect('/home'); //redirect to home page
-        }
-      })
+      if(user){
+        bcrypt.compare(req.body.password,user.password,(err,response) => {
+          if(response){
+            req.session.user = req.body.username;
+            req.flash('welcome','Welcome to my node revision class')
+            res.redirect('/home'); //redirect to home page
+          }
+        });
+      } else {
+        req.flash('error','User does not exist, please sign up first');
+        res.redirect('/register');
+      }
     }
   })
 })

@@ -10,6 +10,14 @@
           </span>          
         </div>
       <% }%>
+      <% if(error.length > 0){%>
+        <div id="alertDialog" class="alert alert-success register-success">
+          <span>
+            <p role="alert"><%=error%></p>
+            <p onclick="hideAlert()" style="float:right;cursor: pointer;margin-top:-2rem;">X</p>
+          </span>          
+        </div>
+      <% }%>
       <form action="/register" method="POST" class="form-div">
         <input type="text" name="username" placeholder="Enter username">
         <input type="password" name="password" placeholder="Enter password">
