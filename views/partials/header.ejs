@@ -26,10 +26,16 @@
               </div>
             </span>
             <span class="navbar-items">
+              <%if(!currentUser){%>
                 <button onclick="location.href = '/register'" class="btn hide">Sign Up</button>
                 <a class="login-btn" href="/login" style="border-left: 3px solid white">Login</a>
                 <a class="hide" href="#" style="margin-right:2%">Support</a>
                 <a class="hide" href="#">Contact us</a>
+              <%} else {%>
+                <a class="login-btn" href="/logout" style="border-left: 3px solid white">Logout</a>
+                <a class="hide" href="#" style="margin-right:2%">Support</a>
+                <a class="hide" href="#">Contact us</a>
+              <%}%>
             </span>
           </div>
         </div>

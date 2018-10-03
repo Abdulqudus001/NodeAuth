@@ -1,6 +1,14 @@
 <% include partials/header%>
   <link rel="stylesheet" href="stylesheets/landing.css">
   <div class="landing-div">
+    <% if(message.length > 0){%>
+      <div id="alertDialog" class="alert alert-danger register-success">
+        <span>
+          <p role="alert"><%=message%></p>
+          <p onclick="hideAlert()" style="float:right;cursor: pointer;margin-top:-2rem;">X</p>
+        </span>          
+      </div>
+    <% }%>
     <div>
       <form action="/login" method="POST" class="form-div">
         <input type="text" name="username" placeholder="Enter username">

@@ -17,7 +17,7 @@ router.get('/register', (req,res) => {
   res.render('register',{message: req.flash('mismatch')});
 });
 
-router.get('/home', (req,res) => {
+router.get('/home', sessionChecker,(req,res) => {
   res.render('home',{message: req.flash('welcome')});
 });
 
@@ -36,6 +36,7 @@ router.post('/register', (req,res) => {
           if(err){
             console.log(err);
           } else {
+            req.session.user = req.body.username;
             req.flash('welcome','Welcome to my node revision class')
             res.redirect('/home'); //redirect to home page
           }
@@ -49,7 +50,13 @@ router.post('/register', (req,res) => {
 });
 
 router.get('/login', (req,res) => {
-  res.render('login');
+  res.render('login',{message: req.flash('error')});
+});
+
+router.get('/logout',(req,res) => {
+  req.flash('error','User logged out successfully');
+  res.redirect('/login');
+  req.session.destroy();
 });
 
 //Method handling user login 
@@ -60,6 +67,7 @@ router.post('/login',(req,res) => {
     } else {
       bcrypt.compare(req.body.password,user.password,(err,response) => {
         if(response){
+          req.session.user = req.body.username;
           req.flash('welcome','Welcome to my node revision class')
           res.redirect('/home'); //redirect to home page
         }
@@ -67,4 +75,13 @@ router.post('/login',(req,res) => {
     }
   })
 })
+
+function sessionChecker(req, res, next) {
+  if (!req.session.user) {
+    req.flash('error','You have to be logged in first')
+    res.redirect('/login');
+  } else {
+    next();
+  }    
+}
 module.exports = router;

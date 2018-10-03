@@ -18,13 +18,17 @@ const indexRoute    = require('./routes/landing.js')
 app.set('view engine','ejs');
 app.use(express.static(__dirname + '/public'));
 app.use(bodyparser.urlencoded({extended: true}));
-
 //Configuring passport
 app.use(session({
+  key: 'users',
   secret: 'ilovescotchscotchyscotchscotch',
   resave: false,
   saveUninitialized: false
 }));
+app.use((req, res, next) => {
+  res.locals.currentUser = req.session.user;
+  next();
+});
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());

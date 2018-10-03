@@ -1,10 +1,10 @@
 <% include partials/header%>
-<% if(message.length > 0){%>
-  <div id="alertDialog" class="alert alert-success register-success">
-    <span>
-      <p role="alert"><%=message%></p>
-      <p onclick="hideAlert()" style="float:right;cursor: pointer;margin-top:-2rem;">X</p>
-    </span>          
-  </div>
-<% }%>
+  <% if(message.length > 0){%>
+    <div id="alertDialog" class="alert alert-success register-success">
+      <span>
+        <p role="alert"><%=message%></p>
+        <p onclick="hideAlert()" style="float:right;cursor: pointer;margin-top:-2rem;">X</p>
+      </span>          
+    </div>
+  <% }%>
 <% include partials/footer%>
