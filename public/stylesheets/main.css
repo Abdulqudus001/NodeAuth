@@ -1,0 +1,106 @@
+body{
+  background: url('../img/fabric_plaid.png') top left repeat;
+  width: 100%;
+  margin: 0;
+  color: white;
+  z-index: 0;
+}
+
+.top-div {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.navigation{
+  background: #212121 !important;
+  width: 100%;
+  /* height: auto; */
+  height: 5rem;
+  padding: 5px;
+}
+
+.navigation div {
+  width: 90%;
+  margin: 0 auto;
+}
+
+
+.navbar-items a, .navbar-items button, .navbar-items div{
+  margin: 1% 0;
+  width: auto;
+  height: 2.5rem;
+  padding-left: 2%;
+  font-size: 1.1rem;
+  float: right;
+  color: white;
+}
+
+.navbar-items button {
+  background: #04AA51;
+  margin-left: 1%;
+  width: 8%;
+  height: 3rem;
+  padding: 10px 0;
+  margin-top: 0.7%;
+}
+
+.navbar-items button:hover {
+  background: #2ABD4A;
+}
+
+.navbar-item-left a{
+  margin: 1% 0;
+  width: auto;
+  font-size: 1.1rem;
+  padding-right: 2%;
+  float: left;
+  color: white;
+}
+
+.dropdown {
+  display: none !important;
+}
+
+.navbar-items a:hover, .navbar-item-left a:hover{
+  font-size: 1.2rem;
+  color: #2ABD4A;
+}
+
+@media (max-width: 980px) {
+  #hidden, .hide{
+    display: none;
+  }
+  .login-btn {
+    margin-top: 2.5% !important;
+    border: none !important;
+  }
+  .dropdown {
+    display: block !important;
+    float: left;
+    cursor: pointer;
+    margin-top: 2.5% !important;
+  }
+  .dropdown div {
+    width: 22px;
+    margin: 3px 0;
+    height: 3px;
+    background: white;
+    clear: both;
+  }
+}
+
+@media (max-width: 768px) {
+  .navigation {
+    width: 120%;
+  }
+  .login-btn {
+    margin-top: -2.5% !important;
+    border: none !important;
+  }
+}
+@media (min-width: 980px) and (max-width: 1280px) {
+  .navbar-items button {
+    width: 9%;
+  }
+}

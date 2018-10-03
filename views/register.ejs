@@ -1,0 +1,26 @@
+<% include partials/header%>
+  <link rel="stylesheet" href="stylesheets/landing.css">
+  <div class="landing-div">
+    <div>
+      <% if(message.length > 0){%>
+        <div id="alertDialog" class="alert alert-success register-success">
+          <span>
+            <p role="alert"><%=message%></p>
+            <p onclick="hideAlert()" style="float:right;cursor: pointer;margin-top:-2rem;">X</p>
+          </span>          
+        </div>
+      <% }%>
+      <form action="/register" method="POST" class="form-div">
+        <input type="text" name="username" placeholder="Enter username">
+        <input type="password" name="password" placeholder="Enter password">
+        <input type="password" name="confirm" placeholder="Confirm password"><br>
+        <button>Sign Up</button>
+      </form>
+      <!-- <span style="display:inline">
+        <p class="alternate-register">Or Sign in with google</p>
+        <div class="g-signin2 google-signin" data-height="" data-onsuccess="onSignIn"></div>
+      </span> -->
+    </div>
+  </div>
+
+<% include partials/footer%>
