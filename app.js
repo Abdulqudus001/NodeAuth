@@ -5,10 +5,10 @@ const express       = require('express'),
       passport      = require('passport'),
       flash         = require('connect-flash'),
       session       = require('express-session'),
+      dotenv        = require('dotenv').config(),
       app           = express();
-
 //Setiing up database using mongoDB ORM
-mongoose.connect('mongodb://127.0.0.1:27017/CMS',{useNewUrlParser: true});
+mongoose.connect(process.env.mlab_url,{useNewUrlParser: true});
 
 require('./config/passport')(passport);
 

@@ -10,7 +10,8 @@ const express       = require('express'),
       Handling routes
 ************************************/
 router.get('/',(req,res) => {
-  res.render('landing');
+  console.log(process.env.mlab_url);
+  res.render('index');
 });
 
 router.get('/register', (req,res) => {
