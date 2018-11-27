@@ -189,3 +189,23 @@
   margin: 0 auto;
 }
 
+#password i {
+  color: black;
+  position: relative;
+  right: 3vw;
+  top: 8px;
+  cursor: default;
+}
+/***************************************
+     END OF REGISTER PAGE STYLES
+***************************************/
+
+/***************************************
+      LOGIN PAGE STYLES
+***************************************/
+p.reset-password {
+  text-align: center;
+}
+/***************************************
+      END OF LOGIN PAGE STYLES
+***************************************/

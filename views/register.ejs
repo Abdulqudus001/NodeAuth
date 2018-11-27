@@ -14,15 +14,15 @@
         <div id="alertDialog" class="alert alert-success register-success">
           <span>
             <p role="alert"><%=error%></p>
-            <p onclick="hideAlert()" style="float:right;cursor: pointer;margin-top:-2rem;">X</p>
+            <p onclick="hideAlert()" style="float:right;cursor: pointer;margin-top:-3rem;">X</p>
           </span>          
         </div>
       <% }%>
       <form action="/register" method="POST" class="form-div">
-        <input type="text" name="username" placeholder="Enter username">
-        <input type="password" name="password" placeholder="Enter password">
-        <input type="password" name="confirm" placeholder="Confirm password"><br>
-        <button>Sign Up</button>
+        <input type="text" id="userName" name="username" placeholder="Enter username">
+        <input type="password" id="password" name="password" placeholder="Enter password">
+        <input type="password" id="c_password" name="confirm" placeholder="Confirm password"><br>
+        <button id="signup">Sign Up</button>
       </form>
       <!-- <span style="display:inline">
         <p class="alternate-register">Or Sign in with google</p>
@@ -30,5 +30,5 @@
       </span> -->
     </div>
   </div>
-
+  <script src="scripts/register.js"></script>
 <% include partials/footer%>

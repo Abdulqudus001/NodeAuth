@@ -6,11 +6,11 @@ const express       = require('express'),
       passportLocal = require('passport-local').Strategy,
       User          = require('../models/user');
 
+let mismatch = false;
 /************************************
       Handling routes
 ************************************/
 router.get('/',(req,res) => {
-  console.log(process.env.mlab_url);
   res.render('index');
 });
 
@@ -38,20 +38,20 @@ router.post('/register', (req,res) => {
             console.log(err);
           } else {
             req.session.user = req.body.username;
-            req.flash('welcome','Welcome to my node revision class')
+            req.flash('welcome','Welcome to my node revision class');
             res.redirect('/home'); //redirect to home page
           }
         })
       });
     });
   } else {
-    req.flash('mismatch','Passwords do not match')
+    req.flash('mismatch','Passwords do not match');
     res.redirect('/register')
   }
 });
 
 router.get('/login', (req,res) => {
-  res.render('login',{message: req.flash('error')});
+  res.render('login',{message: req.flash('error'), isMatch: mismatch});
 });
 
 router.get('/logout',(req,res) => {
@@ -69,9 +69,14 @@ router.post('/login',(req,res) => {
       if(user){
         bcrypt.compare(req.body.password,user.password,(err,response) => {
           if(response){
+            mismatch = false;
             req.session.user = req.body.username;
-            req.flash('welcome','Welcome to my node revision class')
+            req.flash('welcome','Welcome to my node revision class');
             res.redirect('/home'); //redirect to home page
+          } else {
+            mismatch = true;
+            req.flash('error','Incorrect username/password pair');
+            res.redirect('/login');
           }
         });
       } else {

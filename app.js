@@ -9,7 +9,7 @@ const express       = require('express'),
       dotenv        = require('dotenv').config(),
       app           = express();
 //Setiing up database using mongoDB ORM
-// mongoose.connect(process.env.mlab_url,{useNewUrlParser: true});
+mongoose.connect(process.env.mlab_url,{useNewUrlParser: true});
 
 require('./config/passport')(passport);
 
@@ -27,28 +27,29 @@ app.use(session({
   saveUninitialized: false
 }));
 // Connecting to mysql database
-const con = mysql.createConnection({
-  host: 'localhost',
-  user: process.env.sql_user,
-  password: process.env.sql_pass
-});
+// const con = mysql.createConnection({
+//   host: 'localhost',
+//   user: process.env.sql_user,
+//   password: process.env.sql_pass
+// });
 
-con.connect((err) => {
-  if (err) {
-    console.log(process.env.sql_user);
-    console.log(process.env.sql_pass);
-    console.log('Failed to connect',err);
-  } else {
-    console.log('Connected successfully');
-    con.query('create database clinicManagement',(err, result) => {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log('Database successfully created');
-      }
-    });
-  }
-});
+// con.connect((err) => {
+//   if (err) {
+//     console.log(process.env.sql_user);
+//     console.log(process.env.sql_pass);
+//     console.log('Failed to connect',err);
+//   } else {
+//     console.log('Connected successfully');
+//     con.query('create database clinicManagement',(err, result) => {
+//       if (err) {
+//         console.log(err);
+//       } else {
+//         console.log('Database successfully created');
+//       }
+//     });
+//   }
+// });
+
 app.use((req, res, next) => {
   res.locals.currentUser = req.session.user;
   next();
@@ -60,6 +61,7 @@ app.use(flash());
 app.use('/',indexRoute);
 
 //Creating server
-app.listen(8080,() => {
-  console.log('Listening at port 8080');
+let port = process.env.port || 9001;
+app.listen(port,() => {
+  console.log(`Listening at port ${port}`);
 });

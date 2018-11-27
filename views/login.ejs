@@ -11,11 +11,12 @@
     <% }%>
     <div>
       <form action="/login" method="POST" class="form-div">
-        <input type="text" name="username" placeholder="Enter username">
-        <input type="password" name="password" placeholder="Enter password">
+        <input type="text" id="username" name="username" placeholder="Enter username">
+        <input id="password" type="password" name="password" placeholder="Enter password">
         <button>Log in</button>
       </form>
     </div>
+    <p class="reset-password">Forgotten password?, <a href="#">Click here to reset password</a></p>
   </div>
 
 <% include partials/footer%>
